@@ -3,14 +3,22 @@ var button = document.getElementById('button');
 
 button.addEventListener('click', ()=>{
 
-    var cantidad = document.getElementById('cantidad').value;
+    var inputCant = document.getElementById('cantidad');
+    var cantidad = inputCant.value;
 
+    inputCant.classList.remove('is-invalid');
+    
     var generador = document.querySelector('.generador');
     var resultado = document.createElement('div');
-    resultado.classList.add('result');
-    resultado.innerHTML = makeid(cantidad);
 
-    generador.appendChild(resultado);
+    if (cantidad == '' || cantidad == 0){
+        inputCant.classList.add('is-invalid');
+    }else{
+        resultado.classList.add('result');
+        resultado.innerHTML = makeid(cantidad);
+
+        generador.appendChild(resultado);  
+    }
 })
 
 function makeid(length) {
